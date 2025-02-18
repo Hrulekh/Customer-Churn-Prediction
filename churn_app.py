@@ -2,23 +2,23 @@ import streamlit as st
 import numpy as np
 import pickle
 
-# Load the trained model
+
 model = pickle.load(open('churn_model.pkl', 'rb'))
 
-# Input fields for features
+
 age = st.number_input("Age", min_value=18, max_value=100)
 account_type = st.selectbox("Account Type", ["Basic", "Premium"])
 monthly_usage = st.slider("Monthly Usage", min_value=0, max_value=500)
 
-# Convert categorical input to numeric if necessary
+
 account_type_numeric = 0 if account_type == "Basic" else 1
 
-# Prepare input data for prediction
+
 input_data = np.array([age, account_type_numeric, monthly_usage]).reshape(1, -1)
 
-# Predict when the button is clicked
+
 if st.button("Predict"):
-    prediction = model.predict(input_data)  # Model prediction
+    prediction = model.predict(input_data) 
     if prediction[0] == 1:
         st.write("Customer will churn!")
     else:
@@ -26,7 +26,7 @@ if st.button("Predict"):
 
 
 
-
+#failed code
 '''import streamlit as st
 import pickle
 import numpy as np
